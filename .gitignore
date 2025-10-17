@@ -1,0 +1,27 @@
+# Dependencies
+/node_modules
+/client/node_modules
+/server/node_modules
+# Production
+/client/dist
+
+# Environment variables
+.env
+/server/.env
+/client/.env.production
+/client/.env
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache files
+*.cache
+.cache/
+coverage/
+.tmp/
+temp/
+
+
+.vscode/
