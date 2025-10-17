@@ -126,6 +126,7 @@ const RegisterPage = () => {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [showResend, setShowResend] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -170,12 +171,17 @@ const RegisterPage = () => {
     if (!validateForm()) return;
 
     try {
+      setLoading(true);
       await api.post("/auth/register", { name, email, password, phone });
       setMessage("Account created! Please check your email for a verification link.");
       setShowResend(true);
+      setLoading(false);
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed. Please try again.");
     }
+    finally {
+    setLoading(false);
+  }
   };
 
   const handleResend = async () => {
@@ -275,9 +281,12 @@ const RegisterPage = () => {
 
         <button
           type="submit"
-          className="w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300"
+          disabled={loading}
+          className={`w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 ${
+            loading ? 'opacity-70 cursor-not-allowed' : ''
+          }`}
         >
-          Register
+          {loading ? 'Registering...' : 'Register'}
         </button>
 
         <Link to="/login" className="block text-center text-slate-400 hover:text-slate-200 mt-4 text-sm">
