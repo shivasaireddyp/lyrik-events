@@ -13,10 +13,10 @@ dotenv.config();
 connectDB();
 const app = express();
 
-const clientURL = process.env.FRONTEND_URL
+const clientURL = process.env.FRONTEND_URL;
 
 app.use(cors({
-  origin: clientURL,
+  origin: '*',
 }));
 app.use(express.json());
 
