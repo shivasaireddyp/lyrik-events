@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
@@ -10,7 +9,7 @@ const VerifyEmailPage = () => {
     const token = new URLSearchParams(window.location.search).get("token");
     if (token) {
       api
-        .post("/api/auth/verify-email", { token })
+        .post("/auth/verify-email", { token })
         .then(() => {
           navigate("/verified-success");
         })
