@@ -18,6 +18,9 @@ import VerifiedSuccessPage from "./pages/VerifiedSuccessPage";
 import MyBookingsPage from "./pages/MyBookingsPage";
 import MyEventsPage from "./pages/MyEventsPage";
 import ManageEventPage from "./pages/ManageEventPage";
+import ServicesPage from "./pages/ServicesPage";
+import RequestOrganizerPage from "./pages/RequestOrganizerPage";
+// import Footer from './components/Footer';
 
 function App() {
   return (
@@ -100,16 +103,26 @@ function App() {
                   </RoleProtectedRoute>
                 }
               />
-            <Route
-              path="/events/:id/manage"
-              element={
-                <RoleProtectedRoute allowedRoles={["organizer", "admin"]}>
-                  <ManageEventPage />
-                </RoleProtectedRoute>
-              }
-            />
+              <Route
+                path="/events/:id/manage"
+                element={
+                  <RoleProtectedRoute allowedRoles={["organizer", "admin"]}>
+                    <ManageEventPage />
+                  </RoleProtectedRoute>
+                }
+              />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route
+                path="/request-organizer"
+                element={
+                  <ProtectedRoute>
+                    <RequestOrganizerPage />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
           </main>
+          {/* <Footer /> */}
         </div>
       </Router>
     </AuthProvider>
